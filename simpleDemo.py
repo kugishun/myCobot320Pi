@@ -39,8 +39,11 @@ mc.send_angle(Angle.J1.value, 90, 50)
 # Set the waiting time to ensure that the robotic arm has reached the specified position
 time.sleep(2)
 
+
 # The following code can make the robotic arm swing left and right
 # set the number of loops
+num = 5
+
 while num > 0:
 
     # Move joint 2 to the 50 position
