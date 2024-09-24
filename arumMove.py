@@ -7,7 +7,7 @@ import time
 
 if __name__ == "__main__":
     # Initialize a MyCobot object
-    mc = MyCobot(PI_PORT, PI_BAUD)
+    mc = MyCobot(PI_PORT, 115200)
     # Set the start time
     start = time.time()
     # Let the robot arm move to the specified position
