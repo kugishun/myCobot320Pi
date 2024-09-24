@@ -34,12 +34,12 @@ print(angles)  # Operation confirmation
 mc.send_angles([0, 0, 0, 0, 0, 0], 10)
 
 # Set the waiting time to ensure that the robotic arm has reached the specified position
-time.sleep(2.5)
+time.sleep(12.5)
 
 # Move joint 1 to the 90 position
 mc.send_angle(Angle.J1.value, 90, 10)
 # Set the waiting time to ensure that the robotic arm has reached the specified position
-time.sleep(2)
+time.sleep(10)
 
 
 # The following code can make the robotic arm swing left and right
@@ -68,7 +68,7 @@ num = 5
 mc.send_angles([0, 0, 0, 0, 0, 0], 10)
 
 # Set the waiting time to ensure that the robotic arm has reached the specified position
-time.sleep(2.5)
+time.sleep(12.5)
 
 # Let the robotic arm relax, you can manually swing the robotic arm
 mc.release_all_servos()
