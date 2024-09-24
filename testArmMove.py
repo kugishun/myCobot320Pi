@@ -27,6 +27,7 @@ import time
 # Initiate a MyCobot object
 # Create object code here for windows version
 mc = MyCobot("/dev/ttyAMA0", 115200)
+angles = mc.get_angles()  # Operation confirmation
 
 # By passing the angle parameter, let each joint of the robotic arm move to the position corresponding to [0, 0, 0, 0, 0, 0]
 mc.send_angles([0, 0, 0, 0, 0, 0], 10)
