@@ -31,7 +31,7 @@ angles = mc.get_angles()
 print(angles)  # Operation confirmation
 
 # By passing the angle parameter, let each joint of the robotic arm move to the position corresponding to [0, 0, 0, 0, 0, 0]
-mc.send_angles([0, 0, 0, 0, 0, 0], 10)
+mc.send_angles([0, 0, 0, 0, 0, 0], 50)
 
 # Set the waiting time to ensure that the robotic arm has reached the specified position
 time.sleep(12.5)
