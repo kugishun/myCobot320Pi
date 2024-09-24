@@ -11,4 +11,4 @@ mc.power_on()
 mc.send_angles([-124, 130, -4, -2, 7, -1.5], 50)
 time.sleep(12.5)
 
-mc.release_all_servos()
+# mc.release_all_servos()
