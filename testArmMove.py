@@ -29,13 +29,13 @@ import time
 mc = MyCobot("/dev/ttyAMA0", 115200)
 
 # By passing the angle parameter, let each joint of the robotic arm move to the position corresponding to [0, 0, 0, 0, 0, 0]
-mc.send_angles([0, 0, 0, 0, 0, 0], 50)
+mc.send_angles([0, 0, 0, 0, 0, 0], 10)
 
 # Set the waiting time to ensure that the robotic arm has reached the specified position
 time.sleep(2.5)
 
 # Move joint 1 to the 90 position
-mc.send_angle(Angle.J1.value, 90, 50)
+# mc.send_angle(Angle.J1.value, 90, 10)
 # Set the waiting time to ensure that the robotic arm has reached the specified position
 time.sleep(2)
 
