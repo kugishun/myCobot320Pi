@@ -37,7 +37,7 @@ mc.send_angles([0, 0, 0, 0, 0, 0], 50)
 time.sleep(12.5)
 
 # Move joint 1 to the 90 position
-mc.send_angle(Angle.J1.value, 90, 10)
+mc.send_angle(Angle.J1.value, 10)
 # Set the waiting time to ensure that the robotic arm has reached the specified position
 time.sleep(10)
 
