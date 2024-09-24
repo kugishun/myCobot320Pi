@@ -64,6 +64,7 @@ num = 5
 # # Make the robotic arm retract. You can manually swing the robotic arm, and then use the get_angles() function to get the coordinate sequence,
 # # use this function to let the robotic arm reach the position you want.
 # mc.send_angles([88.68, -138.51, 155.65, -128.05, -9.93, -15.29], 50)
+mc.send_angles([0, 0, 0, 0, 0, 0], 10)
 
 # Set the waiting time to ensure that the robotic arm has reached the specified position
 time.sleep(2.5)
