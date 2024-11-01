@@ -8,7 +8,7 @@ mc = MyCobot(PI_PORT, 115200)
 mc.power_off()
 mc.power_on()
 
-mc.send_angles([-124, 130, -4, -2, 7, -1.5], 50)
+mc.send_angles([0, 0, 0, 0, 0, 0], 50)
 time.sleep(12.5)
 
 # mc.release_all_servos()
