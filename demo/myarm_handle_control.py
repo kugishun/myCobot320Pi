@@ -8,7 +8,8 @@ mc = MyCobot("/dev/ttyAMA0", debug=True)
 
 # The default initial point can be changed, if you want to change, you should change 'command' and 'zero' at the same time
 command = [111.8, -63.8, 236.3, -179.82, -0.35, -29.18]
-zero = [111.8, -63.8, 236.3, -179.82, -0.35, -29.18]
+# zero = [111.8, -63.8, 236.3, -179.82, -0.35, -29.18]
+zero = [0, 0, 0, 0, 0, 0]
 
 action = 0
 speed = 80
