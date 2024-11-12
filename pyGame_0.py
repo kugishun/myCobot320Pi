@@ -50,7 +50,7 @@ def main():
                 for i in range(axes):
                     axis = joystick.get_axis(i)
                     print("i value: {} axis value: {}".format(i, axis))
-            elif event_type == pygame.JOYHATMOTION:  # 十字キーを検知
+            elif event_.type == pygame.JOYHATMOTION:  # 十字キーを検知
                 hat = joystick.get_hat(0)
                 print("hat:", str(hat))
 

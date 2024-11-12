@@ -9,6 +9,12 @@ mc.power_off()
 mc.power_on()
 
 mc.send_angles([0, 0, 0, 0, 0, 0], 50)
-time.sleep(12.5)
+time.sleep(5)
+flag = mc.is_gripper_moving()
+print("Is gripper moving: {}".format(flag))
+mc.set_gripper_state(0, 50)
+time.sleep(3)
+mc.set_gripper_state(1, 50)  # 1 is close ,0 is open
+time.sleep(2)
 
 # mc.release_all_servos()
