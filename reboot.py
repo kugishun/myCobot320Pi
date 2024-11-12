@@ -15,6 +15,7 @@ print("Is gripper moving: {}".format(flag))
 mc.set_gripper_state(0, 50)
 time.sleep(3)
 mc.set_gripper_state(1, 50)  # 1 is close ,0 is open
+# mc.set_gripper_value(value, speed) value is 0 to 256, speed is 0 to 100
 time.sleep(2)
 
 # mc.release_all_servos()
