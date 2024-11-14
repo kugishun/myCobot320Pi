@@ -3,10 +3,11 @@ import pygame.locals
 import time
 import threading
 
-zero = [0,0,0,0,0,0]
+zero = [0, 0, 0, 0, 0, 0]
 action = 0
 command = -1
 status = 0
+
 
 def control():
     global action, status, command
@@ -31,7 +32,7 @@ def control():
             elif action == 5:
                 if select_shaft > 1:
                     select_shaft -= 1
-                elif select_shaft <=1:
+                elif select_shaft <= 1:
                     select_shaft = 6
                 print("選択されている軸: {}".format(str(select_shaft)))
                 action = 0
@@ -62,11 +63,10 @@ def control():
             elif action == 6:
                 print("action :{}".format(str(action)))
                 action = 0
-        
-                
-            
+
+
 def main():
-    global action,status,command
+    global action, status, command
     flag = 0
     pygame.init()
     pygame.joystick.init()
@@ -77,60 +77,67 @@ def main():
         print("Please connect the handle first.")
         return
     joystick.init()
-    
+
     done = False
-    
+
     start_time = 0
     while not done:
         for event_ in pygame.event.get():
             if event_.type == pygame.QUIT:
                 done = True
-            elif event_.type == pygame.JOYBUTTONDOWN or event_.type == pygame.JOYBUTTONUP:
+            elif (
+                event_.type == pygame.JOYBUTTONDOWN or event_.type == pygame.JOYBUTTONUP
+            ):
                 buttons = joystick.get_numbuttons()
                 for i in range(buttons):
                     button = joystick.get_button(i)
                     if status == 1:
-                        if i == 3:#Y
+                        if i == 3:  # Y
                             if button == 1:
                                 action = 1
                                 print("action 1")
                                 break
-                        elif i == 0:#A
+                        elif i == 0:  # A
                             if button == 1:
                                 action = 2
                                 print("action 2")
                                 break
-                        if i == 2:#X
-                            if button ==1:
+                        if i == 2:  # X
+                            if button == 1:
                                 print("action 6")
                                 action = 6
                                 break
                     elif status == 2:
-                        if i == 1:#B
+                        if i == 1:  # B
                             if button == 1:
-                                action =3
+                                action = 3
                                 print("action 3")
                                 break
-                        elif i == 2:#X
-                            if button ==1:
+                        if i == 3:  # Y
+                            if button == 1:
+                                action = 1
+                                print("action 1")
+                                break
+                        elif i == 2:  # X
+                            if button == 1:
                                 print("action 6")
                                 action = 6
                                 break
-                        
+
             elif event_.type == pygame.JOYHATMOTION:
                 hat = joystick.get_hat(0)
                 if status == 1:
-                    if hat == (1,0):
+                    if hat == (1, 0):
                         action = 4
                         print("action 4")
                         break
-                    elif hat == (-1,0):
+                    elif hat == (-1, 0):
                         action = 5
                         print("action 5")
                         break
-            
+
             elif event_.type == pygame.JOYAXISMOTION:
-                axes = (joystick.get_numaxes())
+                axes = joystick.get_numaxes()
                 for i in range(axes):
                     axis = joystick.get_axis(i)
                     if status == 2:
@@ -140,18 +147,21 @@ def main():
                                 print("command 0")
                                 flag = 1
                                 break
-                            else :
-                                command = -1
+                            else:
+                                if flag == 0:
+                                    command = -1
                         elif i == 5:
                             if axis > 0.5:
                                 command = 1
                                 print("command 1")
                                 flag = 1
                                 break
-                            else :
-                                command = -1
-                    
-                    
+                            else:
+                                if flag == 0:
+                                    command = -1
+                flag = 0
+
+
 if __name__ == "__main__":
     t = threading.Thread(target=control)
     t.daemon = True

@@ -60,7 +60,7 @@ def control():
                     time.sleep(0.5)
                 else:
                     arm_state[select_shaft - 1] = -165
-                command = -1
+                # command = -1
             elif command == 1:  # 選択されている軸の移動(プラス)
                 print("軸をプラス方向に移動します。")
                 if arm_state[select_shaft - 1] < 165:
@@ -69,7 +69,7 @@ def control():
                     time.sleep(0.5)
                 else:
                     arm_state[select_shaft - 1] = 165
-                command = -1
+                # command = -1
             elif action == 3:  # 軸の選択モードへ戻る
                 print("軸の選択画面に戻ります。")
                 status = 1
