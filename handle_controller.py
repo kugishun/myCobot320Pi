@@ -15,7 +15,7 @@ mc = MyCobot("/dev/ttyAMA0", 115200)
 
 
 def control():
-    global action, status, command
+    global action, status, command, arm_state
     select_shaft = 1
     status = 1
     angle = 0
