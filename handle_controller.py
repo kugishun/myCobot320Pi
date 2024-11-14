@@ -19,7 +19,7 @@ def control():
     select_shaft = 1
     status = 1
     angle = 0
-    grip = False
+    grip = 0
     while True:
         if status == 1:
             if action == 1:  # アームの現在の座標を出力
@@ -79,7 +79,11 @@ def control():
                 action = 0
             elif action == 7:  # グリップの開閉
                 print("グリップの開閉を行います")
-                grip = not grip
+                if grip == 0:
+                    grip = 1
+                else:
+                    grip = 0
+                print(grip)
                 mc.set_eletric_gripper(grip)
                 mc.set_eletric_gripper(grip)
                 mc.set_eletric_gripper(grip)
