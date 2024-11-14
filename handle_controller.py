@@ -85,8 +85,8 @@ def control():
                     grip = 0
                 print(grip)
                 mc.set_eletric_gripper(grip)
-                # mc.set_eletric_gripper(grip)
-                # mc.set_eletric_gripper(grip)
+                mc.set_eletric_gripper(grip)
+                mc.set_eletric_gripper(grip)
                 # mc.set_eletric_gripper(grip)
                 # mc.set_eletric_gripper(grip)
                 action = 0
