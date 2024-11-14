@@ -57,7 +57,6 @@ def control():
                 if arm_state[select_shaft - 1] > -165:
                     arm_state[select_shaft - 1] -= 1
                     mc.send_angle(select_shaft, arm_state[select_shaft - 1], 50)
-                    arm_state = mc.get_angles()
                     time.sleep(0.5)
                 else:
                     arm_state[select_shaft - 1] = -165
@@ -67,7 +66,6 @@ def control():
                 if arm_state[select_shaft - 1] < 165:
                     arm_state[select_shaft - 1] += 1
                     mc.send_angle(select_shaft, arm_state[select_shaft - 1], 50)
-                    arm_state = mc.get_angles()
                     time.sleep(0.5)
                 else:
                     arm_state[select_shaft - 1] = 165
@@ -93,6 +91,9 @@ def main():
     flag = 0
     pygame.init()
     pygame.joystick.init()
+
+    mc.send_angles([0, 0, 0, 0, 0, 0], 60)
+    time.sleep(3)
 
     try:
         joystick = pygame.joystick.Joystick(0)
@@ -185,5 +186,4 @@ if __name__ == "__main__":
     t = threading.Thread(target=control)
     t.daemon = True
     t.start()
-    print("test")
     main()
