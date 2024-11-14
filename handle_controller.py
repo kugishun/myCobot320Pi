@@ -97,6 +97,7 @@ def main():
     flag = 0
     pygame.init()
     pygame.joystick.init()
+    mc.init_eletric_gripper()
 
     mc.send_angles([0, 0, 0, 0, 0, 0], 60)
     time.sleep(3)
