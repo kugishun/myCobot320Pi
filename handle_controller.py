@@ -81,6 +81,8 @@ def control():
                 print("グリップの開閉を行います")
                 grip = not grip
                 mc.set_eletric_gripper(grip)
+                mc.set_eletric_gripper(grip)
+                mc.set_eletric_gripper(grip)
                 action = 0
 
 
