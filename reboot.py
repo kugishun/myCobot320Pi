@@ -10,7 +10,7 @@ mc.power_on()
 
 mc.send_angles([0, 0, 0, 0, 0, 0], 50)
 # print(type(mc.get_angles))
-mc.set_eletric_gripper()
+mc.set_eletric_gripper(1)
 time.sleep(5)
 flag = mc.is_gripper_moving()
 print("Is gripper moving: {}".format(flag))
