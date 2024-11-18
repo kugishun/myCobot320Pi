@@ -56,8 +56,8 @@ def control():
                 print("軸をマイナス方向に移動します。")
                 if arm_state[select_shaft - 1] > -165:
                     arm_state[select_shaft - 1] -= 1
-                    mc.send_angle(select_shaft, arm_state[select_shaft - 1], 50)
-                    time.sleep(0.5)
+                    mc.send_angle(select_shaft, arm_state[select_shaft - 1], 100)
+                    time.sleep(0.2)
                 else:
                     arm_state[select_shaft - 1] = -165
                 # command = -1
@@ -65,8 +65,8 @@ def control():
                 print("軸をプラス方向に移動します。")
                 if arm_state[select_shaft - 1] < 165:
                     arm_state[select_shaft - 1] += 1
-                    mc.send_angle(select_shaft, arm_state[select_shaft - 1], 50)
-                    time.sleep(0.5)
+                    mc.send_angle(select_shaft, arm_state[select_shaft - 1], 100)
+                    time.sleep(0.2)
                 else:
                     arm_state[select_shaft - 1] = 165
                 # command = -1
@@ -178,7 +178,8 @@ def main():
                                 flag = 1
                                 break
                             else:
-                                command = -1
+                                if flag == 0:
+                                    command = -1
                         elif i == 5:
                             if axis > 0.5:
                                 command = 1
@@ -186,7 +187,9 @@ def main():
                                 flag = 1
                                 break
                             else:
-                                command = -1
+                                if flag == 0:
+                                    command = -1
+                flag = 0
 
 
 if __name__ == "__main__":
