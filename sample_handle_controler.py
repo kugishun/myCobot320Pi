@@ -14,6 +14,7 @@ def control():
     select_shaft = 1
     status = 1
     angle = 0
+    direction = True
     while True:
         if status == 1:
             if action == 1:
@@ -44,17 +45,23 @@ def control():
             if action == 1:
                 print("現在の状態を出力します。")
                 action = 0
-            elif command == 0:
-                print("軸をマイナス方向に移動します。")
-                if angle > -90:
-                    angle -= 1
-                    time.sleep(0.5)
-                # command = -1
+            # elif command == 0:
+            #     print("軸をマイナス方向に移動します。")
+            #     if angle > -90:
+            #         angle -= 1
+            #         time.sleep(0.5)
+            #     # command = -1
             elif command == 1:
-                print("軸をプラス方向に移動します。")
-                if angle < 90:
-                    angle += 1
-                    time.sleep(0.5)
+                if direction == True:
+                    print("軸をプラス方向に移動します。")
+                    if angle < 90:
+                        angle += 1
+                        time.sleep(0.5)
+                elif direction == False:
+                    print("軸をマイナス方向に移動します。")
+                    if angle > -90:
+                        angle -= 1
+                        time.sleep(0.5)
                 # command = -1
             elif action == 3:
                 print("軸の選択画面に戻ります。")
@@ -62,6 +69,13 @@ def control():
                 action = 0
             elif action == 6:
                 print("action :{}".format(str(action)))
+                action = 0
+            elif action == 7:
+                direction = not direction
+                if direction == True:
+                    print("プラス方向に移動します。")
+                elif direction == False:
+                    print("マイナス方向に移動します。")
                 action = 0
 
 
@@ -135,22 +149,31 @@ def main():
                         action = 5
                         print("action 5")
                         break
+                elif status == 2:
+                    if hat == (0, 1):
+                        action = 7
+                        print("action 7")
+                        break
+                    elif hat == (0, -1):
+                        action = 7
+                        print("action 7")
+                        break
 
             elif event_.type == pygame.JOYAXISMOTION:
                 axes = joystick.get_numaxes()
                 for i in range(axes):
                     axis = joystick.get_axis(i)
                     if status == 2:
-                        if i == 4:
-                            if axis > 0.5:
-                                command = 0
-                                print("command 0")
-                                flag = 1
-                                break
-                            else:
-                                if flag == 0:
-                                    command = -1
-                        elif i == 5:
+                        # if i == 4:
+                        #     if axis > 0.5:
+                        #         command = 0
+                        #         print("command 0")
+                        #         flag = 1
+                        #         break
+                        #     else:
+                        #         if flag == 0:
+                        #             command = -1
+                        if i == 5:
                             if axis > 0.5:
                                 command = 1
                                 print("command 1")
