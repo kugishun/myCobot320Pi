@@ -24,7 +24,7 @@ def control():
         if status == 1:
             if action == 1:  # アームの現在の座標を出力
                 position = mc.get_angles()
-                print("現在の状態 :{}".format(position))
+                print("現在の状態 :{}".format(mc.get_angles()))
                 action = 0
             elif action == 2:  # 軸を動かすモードに移動
                 print("軸が決定されました: {}".format(str(select_shaft)))
