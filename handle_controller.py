@@ -13,6 +13,9 @@ status = 0
 
 mc = MyCobot("/dev/ttyAMA0", 115200)
 
+mc.power_off()
+mc.power_on()
+
 
 def control():
     global action, status, command, arm_state
