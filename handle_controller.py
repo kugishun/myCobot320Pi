@@ -32,7 +32,7 @@ def control():
                     position = mc.get_angles()
                     print("Power status: ", mc.is_power_on())
                     print("現在の状態 :{}".format(mc.get_angles()))
-                    time.sleep()
+                    time.sleep(1)
                 action = 0
             elif action == 2:  # 軸を動かすモードに移動
                 print("軸が決定されました: {}".format(str(select_shaft)))
