@@ -14,8 +14,8 @@ lock = threading.Lock()
 
 mc = MyCobot("/dev/ttyAMA0", 115200)
 
-mc.power_off()
-mc.power_on()
+# mc.power_off()
+# mc.power_on()
 mc.init_eletric_gripper()
 pygame.init()
 pygame.joystick.init()
@@ -128,7 +128,7 @@ def main():
     global action, status, command, lock
     flag = 0
 
-    mc.send_angles([0, 0, 0, 0, 0, 0], 60)
+    # mc.send_angles([0, 0, 0, 0, 0, 0], 60)
     time.sleep(3)
     with lock:
         print(mc.get_angles())
@@ -231,7 +231,7 @@ def main():
 
 
 if __name__ == "__main__":
-    t = threading.Thread(target=control)
+    t = threading.Thread(target=control, daemon=True)
     t.daemon = True
     t.start()
     main()
