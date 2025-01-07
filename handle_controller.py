@@ -41,18 +41,20 @@ def control():
                 print("軸が決定されました: {}".format(str(select_shaft)))
                 status = 2
             elif action == 4:  # 動かす軸の選択(増加)
-                if select_shaft < 6:
-                    select_shaft += 1
-                elif select_shaft >= 6:
-                    select_shaft = 1
-                print("選択されている軸: {}".format(str(select_shaft)))
+                with lock:
+                    if select_shaft < 6:
+                        select_shaft += 1
+                    elif select_shaft >= 6:
+                        select_shaft = 1
+                    print("選択されている軸: {}".format(str(select_shaft)))
                 action = 0
             elif action == 5:  # 動かす軸の選択(減少)
-                if select_shaft > 1:
-                    select_shaft -= 1
-                elif select_shaft <= 1:
-                    select_shaft = 6
-                print("選択されている軸: {}".format(str(select_shaft)))
+                with lock:
+                    if select_shaft > 1:
+                        select_shaft -= 1
+                    elif select_shaft <= 1:
+                        select_shaft = 6
+                    print("選択されている軸: {}".format(str(select_shaft)))
                 action = 0
             elif action == 6:
                 print("action :{}".format(str(action)))
@@ -60,41 +62,51 @@ def control():
 
         elif status == 2:
             if action == 1:  # アームの現在の座標を出力
-                position = mc.get_angles()
-                print("現在の状態 :{}".format(position))
+                with lock:
+                    position = mc.get_angles()
+                    print("現在の状態 :{}".format(position))
                 action = 0
             elif command == 1:  # 選択されている軸の移動(プラス)
                 if direction == True:
-                    print("軸をプラス方向に移動します。")
-                    if arm_state[select_shaft - 1] < 165:
-                        arm_state[select_shaft - 1] += 1
-                        mc.send_angle(select_shaft, arm_state[select_shaft - 1], 100)
-                        time.sleep(0.2)
-                    else:
-                        arm_state[select_shaft - 1] = 165
+                    with lock:
+                        print("軸をプラス方向に移動します。")
+                        if arm_state[select_shaft - 1] < 165:
+                            arm_state[select_shaft - 1] += 1
+                            mc.send_angle(
+                                select_shaft, arm_state[select_shaft - 1], 100
+                            )
+                            time.sleep(0.2)
+                        else:
+                            arm_state[select_shaft - 1] = 165
                 elif direction == False:
-                    print("軸をマイナス方向に移動します。")
-                    if arm_state[select_shaft - 1] > -165:
-                        arm_state[select_shaft - 1] -= 1
-                        mc.send_angle(select_shaft, arm_state[select_shaft - 1], 100)
-                        time.sleep(0.2)
-                    else:
-                        arm_state[select_shaft - 1] = -165
+                    with lock:
+                        print("軸をマイナス方向に移動します。")
+                        if arm_state[select_shaft - 1] > -165:
+                            arm_state[select_shaft - 1] -= 1
+                            mc.send_angle(
+                                select_shaft, arm_state[select_shaft - 1], 100
+                            )
+                            time.sleep(0.2)
+                        else:
+                            arm_state[select_shaft - 1] = -165
                 # command = -1
             elif action == 3:  # 軸の選択モードへ戻る
-                print("軸の選択画面に戻ります。")
-                print("現在の状態 :{}".format(mc.get_angles()))
-                status = 1
+                with lock:
+                    print("軸の選択画面に戻ります。")
+                    print("現在の状態 :{}".format(mc.get_angles()))
+                    status = 1
                 action = 0
             elif action == 6:
-                print("action :{}".format(str(action)))
+                with lock:
+                    print("action :{}".format(str(action)))
                 action = 0
             elif action == 7:  # グリップの開閉
-                print("グリップの開閉を行います")
-                if grip == 0:
-                    grip = 1
-                else:
-                    grip = 0
+                with lock:
+                    print("グリップの開閉を行います")
+                    if grip == 0:
+                        grip = 1
+                    else:
+                        grip = 0
                 print(grip)
                 mc.set_eletric_gripper(grip)
                 mc.set_eletric_gripper(grip)
@@ -103,11 +115,12 @@ def control():
                 # mc.set_eletric_gripper(grip)
                 action = 0
             elif action == 8:
-                direction = not direction
-                if direction == True:
-                    print("プラス方向に操作できます。")
-                elif direction == False:
-                    print("マイナス方向に操作できます。")
+                with lock:
+                    direction = not direction
+                    if direction == True:
+                        print("プラス方向に操作できます。")
+                    elif direction == False:
+                        print("マイナス方向に操作できます。")
                 action = 0
 
 
