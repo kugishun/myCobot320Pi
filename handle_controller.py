@@ -76,7 +76,7 @@ def control():
                 # command = -1
             elif action == 3:  # 軸の選択モードへ戻る
                 print("軸の選択画面に戻ります。")
-                print("現在の状態 :{}".format(position))
+                print("現在の状態 :{}".format(mc.get_angles()))
                 status = 1
                 action = 0
             elif action == 6:
