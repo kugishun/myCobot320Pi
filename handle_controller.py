@@ -10,6 +10,7 @@ arm_state = zero
 action = 0
 command = -1
 status = 0
+lock = threading.Lock()
 
 mc = MyCobot("/dev/ttyAMA0", 115200)
 
@@ -19,7 +20,7 @@ time.sleep(2)
 
 
 def control():
-    global action, status, command, arm_state
+    global action, status, command, arm_state, lock
     select_shaft = 1
     status = 1
     direction = True
@@ -27,9 +28,11 @@ def control():
     while True:
         if status == 1:
             if action == 1:  # アームの現在の座標を出力
-                position = mc.get_angles()
-                print("Power status: ", mc.is_power_on())
-                print("現在の状態 :{}".format(mc.get_angles()))
+                with lock:
+                    position = mc.get_angles()
+                    print("Power status: ", mc.is_power_on())
+                    print("現在の状態 :{}".format(mc.get_angles()))
+                    time.sleep()
                 action = 0
             elif action == 2:  # 軸を動かすモードに移動
                 print("軸が決定されました: {}".format(str(select_shaft)))
@@ -214,7 +217,7 @@ def main():
 
 
 if __name__ == "__main__":
-    # t = threading.Thread(target=control)
-    # t.daemon = True
-    # t.start()
+    t = threading.Thread(target=control)
+    t.daemon = True
+    t.start()
     main()
