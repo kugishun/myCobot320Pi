@@ -214,7 +214,7 @@ def main():
 
 
 if __name__ == "__main__":
-    t = threading.Thread(target=control)
-    t.daemon = True
-    t.start()
+    # t = threading.Thread(target=control)
+    # t.daemon = True
+    # t.start()
     main()
