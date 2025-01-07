@@ -235,3 +235,4 @@ if __name__ == "__main__":
     t.daemon = True
     t.start()
     main()
+    t.join()
