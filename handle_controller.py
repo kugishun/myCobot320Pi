@@ -112,7 +112,7 @@ def control():
 
 
 def main():
-    global action, status, command
+    global action, status, command, lock
     flag = 0
 
     mc.send_angles([0, 0, 0, 0, 0, 0], 60)
