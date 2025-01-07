@@ -15,6 +15,7 @@ mc = MyCobot("/dev/ttyAMA0", 115200)
 
 mc.power_off()
 mc.power_on()
+time.sleep(2)
 
 
 def control():
