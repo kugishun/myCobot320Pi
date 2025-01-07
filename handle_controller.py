@@ -113,6 +113,7 @@ def main():
 
     mc.send_angles([0, 0, 0, 0, 0, 0], 60)
     time.sleep(3)
+    print(mc.get_angles())
 
     try:
         joystick = pygame.joystick.Joystick(0)
