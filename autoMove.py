@@ -14,12 +14,17 @@ mc.send_angles([-18, 85, 3, 24.5, 0, 96], 40)
 time.sleep(5)
 mc.send_angles([-18, 84.5, 18, 24.5, 0, 96], 30)
 time.sleep(5)
+
+while True:
+    user_input = input("Enter 1 to start the next sequence: ")
+    if user_input == "1":
+        break
+
 mc.set_eletric_gripper(1)
 mc.set_eletric_gripper(1)
 mc.set_eletric_gripper(1)
 time.sleep(5)
-
-mc.send_angles([-18, 85, 3, 24.5, 0, 96], 40)
+mc.send_angles([-18, 85, 3, 24.5, 0, 96], 30)
 time.sleep(5)
 mc.send_angles([-18, 84.5, 18, 24.5, 0, 96], 40)
 time.sleep(5)
