@@ -10,7 +10,7 @@ mc.power_on()
 
 mc.send_angles([0, 0, 0, 0, 0, 0], 50)
 time.sleep(5)
-mc.send_angles([-18, 84.5, 18, 24.5, 0, 96], 40)
+mc.send_angles([-18, 85, 3, 24.5, 0, 96], 40)
 time.sleep(5)
 mc.send_angles([-18, 84.5, 18, 24.5, 0, 96], 30)
 time.sleep(5)
