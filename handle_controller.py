@@ -2,7 +2,7 @@ import pygame
 import pygame.locals
 import time
 import threading
-from pymycobot.mycobot import MyCobot
+from pymycobot.mycobot import MyCobot320
 from pymycobot.genre import Angle
 
 zero = [0, 0, 0, 0, 0, 0]  # -170 to 170
@@ -12,7 +12,7 @@ command = -1
 status = 0
 lock = threading.Lock()
 
-mc = MyCobot("/dev/ttyAMA0", 115200)
+mc = MyCobot320("/dev/ttyAMA0", 115200)
 
 # mc.power_off()
 # mc.power_on()

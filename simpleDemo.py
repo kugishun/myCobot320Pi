@@ -1,9 +1,5 @@
 from pymycobot.mycobot import MyCobot
 from pymycobot.genre import Angle
-from pymycobot import (
-    PI_PORT,
-    PI_BAUD,
-)  # When using the Raspberry Pi version of mycobot, you can refer to these two variables to initialize MyCobot
 import time
 
 # MyCobot class initialization requires two parameters:
