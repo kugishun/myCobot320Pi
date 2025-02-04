@@ -3,7 +3,7 @@ from pymycobot.genre import Angle
 import time
 
 mc = MyCobot320("/dev/ttyAMA0", 115200)
-mc.init_eletric_gripper()
+# mc.init_eletric_gripper()
 
 mc.power_off()
 mc.power_on()
