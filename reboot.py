@@ -1,4 +1,4 @@
-from pymycobot.mycobot import MyCobot320
+from pymycobot.mycobot320 import MyCobot320
 from pymycobot import PI_PORT, PI_BAUD
 from pymycobot.genre import Angle
 import time

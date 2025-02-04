@@ -1,8 +1,8 @@
-from pymycobot.mycobot import MyCobot
+from pymycobot.mycobot320 import MyCobot320
 from pymycobot.genre import Angle
 import time
 
-mc = MyCobot("/dev/ttyAMA0", 115200)
+mc = MyCobot320("/dev/ttyAMA0", 115200)
 mc.init_eletric_gripper()
 
 mc.power_off()
