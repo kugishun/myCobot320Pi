@@ -2,7 +2,7 @@ import pygame
 import pygame.locals
 import time
 import threading
-from pymycobot.mycobot import MyCobot320
+from pymycobot.mycobot320 import MyCobot320
 from pymycobot.genre import Angle
 
 zero = [0, 0, 0, 0, 0, 0]  # -170 to 170
@@ -16,7 +16,7 @@ mc = MyCobot320("/dev/ttyAMA0", 115200)
 
 # mc.power_off()
 # mc.power_on()
-mc.init_eletric_gripper()
+mc.init_electric_gripper()
 pygame.init()
 pygame.joystick.init()
 time.sleep(2)
@@ -108,9 +108,9 @@ def control():
                     else:
                         grip = 0
                 print(grip)
-                mc.set_eletric_gripper(grip)
-                mc.set_eletric_gripper(grip)
-                mc.set_eletric_gripper(grip)
+                mc.set_electric_gripper(grip)
+                mc.set_electric_gripper(grip)
+                mc.set_electric_gripper(grip)
                 # mc.set_eletric_gripper(grip)
                 # mc.set_eletric_gripper(grip)
                 action = 0
