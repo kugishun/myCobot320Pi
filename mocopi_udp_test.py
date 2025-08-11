@@ -20,6 +20,7 @@ print("while start")
 while True:
     print("While 1")
     data, addr = sock.recvfrom(65535)
+    print("sock.recvfrom Done")
     msg = json.loads(data.decode("utf-8"))
     print(f"msg: {msg}")
 
