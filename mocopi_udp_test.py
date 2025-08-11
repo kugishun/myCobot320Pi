@@ -1,42 +1,29 @@
-# recv_to_mycobot_min.py
-import socket, json, math
+# pi_udp_to_mycobot.py  （Raspberry Pi で実行）
+import socket, json, time
 from pymycobot.mycobot320 import MyCobot320
 
-UDP_IP = "0.0.0.0"; UDP_PORT = 7001
+IP = "0.0.0.0"; PORT = 7010
+sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+sock.bind((IP, PORT))
+print(f"[robot] listening {IP}:{PORT}")
 
-# ---- キャリブ（最初は仮でOK） ----
-# Unity→Robot の並進 [mm]（作業原点・設置位置に合わせて後で調整）
-T_U2R = [200.0, 0.0, 250.0]
-
-def clip(v, lo, hi): return max(lo, min(hi, v))
-
-# ---- Robot 接続 ----
-# 例: Windowsなら "COM3" 等。あなたのポート名に変更
+# 例：/dev/ttyAMA0 や /dev/ttyUSB0 等、Piの接続に合わせて
 mc = MyCobot320("/dev/ttyAMA0", 115200)
 # mc.power_on()
+# mc.init_eletric_gripper()  # 機種により
 
-# ---- UDP 待受 ----
-sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-sock.bind((UDP_IP, UDP_PORT))
-print(f"listening on {UDP_IP}:{UDP_PORT}")
-mc.send_angles([0, 0, 0, 0, 0, 0], 50)
-
+last_ts = time.time()
 while True:
     data, addr = sock.recvfrom(65535)
-    m = json.loads(data.decode("utf-8"))
-    pos = m["pos"]; eul = m["eul"]
+    msg = json.loads(data.decode("utf-8"))
 
-    # m→mm + 並進オフセット（最初はZだけ上げるなどでOK）
-    x = pos["x"]*1000.0 + T_U2R[0]
-    y = pos["y"]*1000.0 + T_U2R[1]
-    z = pos["z"]*1000.0 + T_U2R[2]
+    x = float(msg["x"]); y = float(msg["y"]); z = float(msg["z"])
+    rx = float(msg["rx"]); ry = float(msg["ry"]); rz = float(msg["rz"])
+    speed = int(msg.get("speed", 30))
+    mode  = int(msg.get("mode", 1))
 
-    rx = eul["rx"]  # deg
-    ry = eul["ry"]
-    rz = eul["rz"]
+    # ウォッチドッグ（任意）：受信間隔が空いたら何か処理するなど
+    last_ts = time.time()
 
-    # 最低限の安全クリップ（必要に応じて調整）
-    z = clip(z, 150.0, 400.0)
-
-    # 送信（内部IKに任せる）
-    mc.send_coords([x, y, z, rx, ry, rz], 30, 1)  # speed=30, 直線補間 mode=1
+    # 実行
+    mc.send_coords([x, y, z, rx, ry, rz], speed, mode)
