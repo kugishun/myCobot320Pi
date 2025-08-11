@@ -11,11 +11,15 @@ print(f"[robot] listening {IP}:{PORT}")
 mc = MyCobot320("/dev/ttyAMA0", 115200)
 # mc.power_on()
 # mc.init_eletric_gripper()  # 機種により
+mc.send_angles([-18, 85, 3, 24.5, 0, 96], 40)
+time.sleep(3)
+mc.send_angles([0, 0, 0, 0, 0, 0], 50)
 
 last_ts = time.time()
 while True:
     data, addr = sock.recvfrom(65535)
     msg = json.loads(data.decode("utf-8"))
+    print(f"msg: {msg}")
 
     x = float(msg["x"]); y = float(msg["y"]); z = float(msg["z"])
     rx = float(msg["rx"]); ry = float(msg["ry"]); rz = float(msg["rz"])
@@ -26,4 +30,4 @@ while True:
     last_ts = time.time()
 
     # 実行
-    mc.send_coords([x, y, z, rx, ry, rz], speed, mode)
+    mc.send_angles([x, y, z, rx, ry, rz], speed, mode)
