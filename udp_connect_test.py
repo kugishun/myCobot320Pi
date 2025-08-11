@@ -2,7 +2,7 @@
 import socket
 
 LISTEN_IP = "0.0.0.0"  # 全インターフェースで受信
-LISTEN_PORT = 7001     # PC送信側と合わせる
+LISTEN_PORT = 7010     # PC送信側と合わせる
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 sock.bind((LISTEN_IP, LISTEN_PORT))
