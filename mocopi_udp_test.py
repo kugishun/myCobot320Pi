@@ -16,7 +16,9 @@ time.sleep(3)
 mc.send_angles([0, 0, 0, 0, 0, 0], 50)
 
 last_ts = time.time()
+print("while start")
 while True:
+    print("While 1")
     data, addr = sock.recvfrom(65535)
     msg = json.loads(data.decode("utf-8"))
     print(f"msg: {msg}")
@@ -28,6 +30,6 @@ while True:
 
     # ウォッチドッグ（任意）：受信間隔が空いたら何か処理するなど
     last_ts = time.time()
-
+    print(f"send_angle[{x},{y},{z},{rx},{ry}j,{rz}]")
     # 実行
-    mc.send_angles([x, y, z, rx, ry, rz], speed, mode)
+    # mc.send_angles([x, y, z, rx, ry, rz], speed, mode)
