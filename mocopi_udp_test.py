@@ -22,7 +22,7 @@ while True:
     data, addr = sock.recvfrom(65535)
     print("sock.recvfrom Done")
     msg = json.loads(data.decode("utf-8"))
-    print(f"msg: {msg}")
+    # print(f"msg: {msg}")
 
     if 350<float(msg["x"]):
         x = 350
@@ -53,4 +53,4 @@ while True:
     last_ts = time.time()
     print(f"send_angles[{x},{y},{z},{rx},{ry},{rz}]")
     # 実行
-    # mc.send_coords([x, y, z, rx, ry, rz], speed, mode)
+    mc.send_coords([x, y, z, rx, ry, rz], speed, mode)
