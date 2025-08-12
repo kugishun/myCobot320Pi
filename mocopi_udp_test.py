@@ -28,17 +28,23 @@ while True:
         x = 350
     elif -350>float(msg["x"]):
         x = -350
+    else:
+        x = float(msg["x"])
 
     if 350<float(msg["y"]):
         y = 350
     elif -350>float(msg["y"]):
         y = -350
+    else:
+        y = float(msg["y"])
 
     if 350<float(msg["z"]):
         z = 350
     elif -350>float(msg["z"]):
         z = -350
-    
+    else:
+        z = float(msg["z"])
+
     rx = float(msg["rx"]); ry = float(msg["ry"]); rz = float(msg["rz"])
     speed = int(msg.get("speed", 30))
     mode  = int(msg.get("mode", 1))
