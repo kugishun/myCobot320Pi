@@ -12,7 +12,7 @@ mc.init_electric_gripper()
 mc.set_electric_gripper(1)  # 開く
 mc.set_electric_gripper(1)
 mc.set_electric_gripper(1)
-time.seleep(2)
+time.sleep(2)
 mc.set_electric_gripper(0)  # 閉じる
 mc.set_electric_gripper(0)  # 閉じる
 mc.set_electric_gripper(0)  # 閉じる
