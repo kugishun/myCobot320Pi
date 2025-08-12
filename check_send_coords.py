@@ -1,22 +1,22 @@
-from pymycobot.mycobot320 import MyCobot320
+from pymycobot import MyCobot
 from pymycobot.genre import Coord
 import time
 # import the project package
 
 # Initiate a MyPalletizer object
-mc = MyCobot320("/dev/ttyAMA0", 115200)
+mc = MyCobot("/dev/ttyAMA0", 115200)
 
 # # Get the current coordinates and pose of the head
 # coords = mc.get_coords()
 # print(coords)
 
 #Plan the route at random, let the head reach the coordinates of [57.0, -107.4, 316.3] in an non-linear manner at the speed is 80mm/s
-mc.send_coords([187.8, 42.1, 183.3, -159.6], 80, 0)
+mc.send_coords([200,0,350,0,0,0],50,1)
 # wait for 2 seconds
 time.sleep(2)
 
 # Plan the route at random, let the head reach the coordinates of [207.9, 47, 49.3,-159.69] in an non-linear manner at the speed is 80mm/s
-mc.send_coords([207.9, 47, 49.3,-159.69], 80, 0)
+# mc.send_coords([207.9, 47, 49.3,-159.69], 80, 0)
 # wait for 2 seconds
 time.sleep(2)
 
