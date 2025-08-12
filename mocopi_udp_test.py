@@ -53,4 +53,4 @@ while True:
     last_ts = time.time()
     print(f"send_angles[{x},{y},{z},{rx},{ry},{rz}]")
     # 実行
-    mc.send_coords([x, y, z, rx, ry, rz], speed, mode)
+    # mc.send_coords([x, y, z, rx, ry, rz], speed, mode)
