@@ -13,7 +13,7 @@ mc = MyCobot320("/dev/ttyAMA0", 115200)
 # mc.init_eletric_gripper()  # 機種により
 mc.send_angles([-18, 85, 3, 24.5, 0, 96], 40)
 time.sleep(3)
-mc.send_coords([0, 0, 0, 0, 0, 0], 50,1)
+mc.send_angles([0, 0, 0, 0, 0, 0], 50,1)
 
 last_ts = time.time()
 print("while start")
