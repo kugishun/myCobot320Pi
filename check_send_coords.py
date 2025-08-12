@@ -9,7 +9,7 @@ mc = MyCobot320("/dev/ttyAMA0", 115200)
 # print(coords)
 
 mc.init_electric_gripper()
-print(mc.is_gripper_moving())
+print(mc.get_gripper_value())
 
 #Plan the route at random, let the head reach the coordinates of [57.0, -107.4, 316.3] in an non-linear manner at the speed is 80mm/s
 print("first")
