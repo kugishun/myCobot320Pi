@@ -1,10 +1,10 @@
-from pymycobot.mypalletizer import MyPalletizer
+from pymycobot.mycobot320 import MyCobot320
 from pymycobot.genre import Coord
 import time
 # import the project package
 
 # Initiate a MyPalletizer object
-mc = MyPalletizer("/dev/ttyAMA0", 115200)
+mc = MyCobot320("/dev/ttyAMA0", 115200)
 
 # # Get the current coordinates and pose of the head
 # coords = mc.get_coords()
