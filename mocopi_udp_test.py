@@ -13,7 +13,7 @@ mc = MyCobot320("/dev/ttyAMA0", 115200)
 # mc.init_eletric_gripper()  # 機種により
 mc.send_angles([-18, 85, 3, 24.5, 0, 96], 40)
 time.sleep(3)
-mc.send_angles([0, 0, 0, 0, 0, 0], 50)
+mc.send_coords([0, 0, 0, 0, 0, 0], 50,1)
 
 last_ts = time.time()
 print("while start")
@@ -51,6 +51,6 @@ while True:
 
     # ウォッチドッグ（任意）：受信間隔が空いたら何か処理するなど
     last_ts = time.time()
-    print(f"send_angle[{x},{y},{z},{rx},{ry}j,{rz}]")
+    print(f"send_angles[{x},{y},{z},{rx},{ry},{rz}]")
     # 実行
     mc.send_coords([x, y, z, rx, ry, rz], speed, mode)
