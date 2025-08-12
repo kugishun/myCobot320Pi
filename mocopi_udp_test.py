@@ -24,7 +24,21 @@ while True:
     msg = json.loads(data.decode("utf-8"))
     print(f"msg: {msg}")
 
-    x = float(msg["x"]); y = float(msg["y"]); z = float(msg["z"])
+    if 350<float(msg["x"]):
+        x = 350
+    elif -350>float(msg["x"]):
+        x = -350
+
+    if 350<float(msg["y"]):
+        y = 350
+    elif -350>float(msg["y"]):
+        y = -350
+
+    if 350<float(msg["z"]):
+        z = 350
+    elif -350>float(msg["z"]):
+        z = -350
+    
     rx = float(msg["rx"]); ry = float(msg["ry"]); rz = float(msg["rz"])
     speed = int(msg.get("speed", 30))
     mode  = int(msg.get("mode", 1))
