@@ -16,7 +16,8 @@ time.sleep(5)
 # print("Is gripper moving: {}".format(flag))
 print(mc.get_angles())
 coords = mc.get_coords
-print(f"get_coords():{coords}")
+for data in coords:
+    print(f"get_coords():{data}")
 # mc.set_gripper_state(0, 50)
 # mc.set_electric_gripper(0)
 # mc.set_electric_gripper(0)
