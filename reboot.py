@@ -10,20 +10,22 @@ mc.power_on()
 
 mc.send_angles([0, 0, 0, 0, 0, 0], 50)
 # print(type(mc.get_angles))
-mc.init_electric_gripper()
+# mc.init_electric_gripper()
 time.sleep(5)
 flag = mc.is_gripper_moving()
-print("Is gripper moving: {}".format(flag))
+# print("Is gripper moving: {}".format(flag))
 print(mc.get_angles())
+coords = mc.get_coords
+print(f"get_coords():{coords}")
 # mc.set_gripper_state(0, 50)
-mc.set_electric_gripper(0)
-mc.set_electric_gripper(0)
-mc.set_electric_gripper(0)
-time.sleep(3)
-mc.set_electric_gripper(1)  # 1 is close ,0 is open
-mc.set_electric_gripper(1)
-mc.set_electric_gripper(1)
-mc.set_gripper_value(100, 50)  # value is 0 to 256, speed is 0 to 100
-time.sleep(2)
+# mc.set_electric_gripper(0)
+# mc.set_electric_gripper(0)
+# mc.set_electric_gripper(0)
+# time.sleep(3)
+# mc.set_electric_gripper(1)  # 1 is close ,0 is open
+# mc.set_electric_gripper(1)
+# mc.set_electric_gripper(1)
+# mc.set_gripper_value(100, 50)  # value is 0 to 256, speed is 0 to 100
+# time.sleep(2)
 
 # mc.release_all_servos()
