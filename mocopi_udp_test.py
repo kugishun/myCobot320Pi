@@ -59,5 +59,5 @@ while True:
     print(f"send_angles[{x},{y},{z},{rx},{ry},{rz}]")
     # 実行
     mc.send_coords([x, y, z, rx, ry, rz], speed, mode)
-    mc.send_angle(6,50,50)
+    # mc.send_angle(6,50,50)
     time.sleep(0.1)
