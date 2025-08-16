@@ -9,6 +9,11 @@ print(f"[robot] listening {IP}:{PORT}")
 
 # 例：/dev/ttyAMA0 や /dev/ttyUSB0 等、Piの接続に合わせて
 mc = MyCobot320("/dev/ttyAMA0", 115200)
+max_angle = {
+    "x": (-350.0, 350.0),
+    "y": (-350.0, 350.0),
+    "z": (165.0, 523.9)
+} 
 # mc.power_on()
 # mc.init_eletric_gripper()  # 機種により
 mc.send_angles([-18, 85, 3, 24.5, 0, 96], 40)
@@ -24,24 +29,24 @@ while True:
     msg = json.loads(data.decode("utf-8"))
     # print(f"msg: {msg}")
 
-    if 350<float(msg["x"]):
-        x = 350
-    elif -350>float(msg["x"]):
-        x = -350
+    if max_angle["x"][1]<float(msg["x"]):
+        x = max_angle["x"][1]
+    elif max_angle["x"][0]>float(msg["x"]):
+        x = max_angle["x"][0]
     else:
         x = float(msg["x"])
 
-    if 350<float(msg["y"]):
-        y = 350
-    elif -350>float(msg["y"]):
-        y = -350
+    if max_angle["y"][1]<float(msg["y"]):
+        y = max_angle["y"][1]
+    elif max_angle["y"][0]>float(msg["y"]):
+        y = max_angle["y"][0]
     else:
         y = float(msg["y"])
 
-    if 350<float(msg["z"]):
-        z = 350
-    elif -350>float(msg["z"]):
-        z = -350
+    if max_angle["z"][1]<float(msg["z"]):
+        z = max_angle["z"][1]
+    elif max_angle["z"][0]>float(msg["z"]):
+        z = max_angle["z"][0]
     else:
         z = float(msg["z"])
 
