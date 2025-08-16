@@ -16,7 +16,7 @@ max_angle = {
 } 
 # mc.power_on()
 # mc.init_eletric_gripper()  # 機種により
-mc.send_angles([-18, 85, 3, 24.5, 0, 96], 40)
+# mc.send_angles([-18, 85, 3, 24.5, 0, 96], 40)
 time.sleep(3)
 mc.send_angles([0, 0, 0, 0, 0, 0], 50,1)
 
