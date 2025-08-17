@@ -60,4 +60,4 @@ while True:
     # 実行
     mc.send_coords([x, y, z, rx, ry, rz], speed, mode)
     # mc.send_angle(6,50,50)
-    time.sleep(0.1)
+    # time.sleep(0.1)
