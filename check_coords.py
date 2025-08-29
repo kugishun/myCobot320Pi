@@ -36,7 +36,7 @@ with open(out_file, "w", newline="") as f:
     # 姿勢ごとに記録
     for pose in pose_list:
         print(f"Moving to {pose} ...")
-        mc.send_angles(pose, 20)   # speed=20
+        mc.send_angles(pose, 50)   # speed=20
         time.sleep(3)              # 移動完了待ち
 
         coords = mc.get_coords()   # [x,y,z,rx,ry,rz]
