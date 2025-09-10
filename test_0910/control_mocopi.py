@@ -12,7 +12,7 @@ mc.send_angles(init_pose, 30)
 time.sleep(3)
 
 # ====== UDP設定 ======
-IP = "127.0.0.1"
+IP = "0.0.0.0"
 PORT = 7001
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 sock.bind((IP, PORT))
