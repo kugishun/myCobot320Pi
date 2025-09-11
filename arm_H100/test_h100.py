@@ -1,4 +1,4 @@
-from Myhand.MyHand import MyGripper_H100
+from MyHand import MyGripper_H100
 
 
 hand = MyGripper_H100("COM6")
