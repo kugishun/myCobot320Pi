@@ -28,23 +28,30 @@ def udp_receiver():
             print("UDP recv error:", e)
 
 def data_processor():
-    """キューからデータを取り出して処理"""
-    mc = MyCobot320("/dev/ttyAMA0", 115200)  # 実機制御はここで初期化
-    hand=MyGripper_H100("/dev/ttyCH343USB0")
+    """常に最新のデータだけ処理"""
+    mc = MyCobot320("/dev/ttyAMA0", 115200)
+    hand = MyGripper_H100("/dev/ttyCH343USB0")
     mc.power_on()
-    hand.set_gripper_pose(4,15)
+    hand.set_gripper_pose(4, 15)
 
     while True:
         try:
-            msg = data_queue.get()  # データを1件取り出す（ブロッキング）
-            
-            if "angles" in msg:
-                angles = msg["angles"]
+            latest_msg = None
+            # キューを一気に掃き出し → 最後の1件だけ残す
+            while not data_queue.empty():
+                latest_msg = data_queue.get_nowait()
+
+            if latest_msg is None:
+                time.sleep(0.001)  # CPU負荷軽減
+                continue
+
+            if "angles" in latest_msg:
+                angles = latest_msg["angles"]
                 print("[Processor] angles:", angles)
                 mc.send_angles(angles, 30)
 
-            if "gripper" in msg:
-                gripper = msg["gripper"]
+            if "gripper" in latest_msg:
+                gripper = latest_msg["gripper"]
                 print("[Processor] gripper:", gripper)
                 hand.set_gripper_joint_angle(1, int(gripper[2]))
                 hand.set_gripper_joint_angle(2, int(gripper[1]))
@@ -52,10 +59,9 @@ def data_processor():
 
         except Exception as e:
             print("Process error:", e)
-        time.sleep(0.01)  # CPU負荷を抑えるため少し待機
 
 if __name__ == "__main__":
-    # 受信スレッド
+    # UDP受信スレッド
     t1 = threading.Thread(target=udp_receiver, daemon=True)
     t1.start()
 
@@ -63,6 +69,6 @@ if __name__ == "__main__":
     t2 = threading.Thread(target=data_processor, daemon=True)
     t2.start()
 
-    # メインは待機
+    # メイン待機
     while True:
         time.sleep(1)
