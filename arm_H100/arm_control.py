@@ -32,6 +32,7 @@ def data_processor():
     mc = MyCobot320("/dev/ttyAMA0", 115200)  # 実機制御はここで初期化
     hand=MyGripper_H100("/dev/ttyCH343USB0")
     mc.power_on()
+    hand.set_gripper_pose(4,15)
 
     while True:
         try:
